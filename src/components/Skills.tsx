@@ -1,5 +1,6 @@
 import React from 'react';
 import { skills } from '../data/portfolio-data';
+import { CheckCircle } from 'lucide-react';
 
 interface SkillsProps {
   darkMode: boolean;
@@ -7,50 +8,40 @@ interface SkillsProps {
 
 const Skills: React.FC<SkillsProps> = ({ darkMode }) => {
   return (
-    <section 
-      id="skills" 
-      className={`py-16 ${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'}`}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className={`text-3xl font-bold mb-12 text-center ${
-          darkMode ? 'text-purple-400' : 'text-purple-700'
-        }`}>
-          Skills & Expertise
-        </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skills.map((category, index) => (
-            <div 
-              key={index}
-              className={`p-6 rounded-lg shadow-md transform transition-all duration-300 hover:scale-105 ${
-                darkMode ? 'bg-gray-900 hover:bg-gray-850' : 'bg-white hover:shadow-lg'
-              }`}
-            >
-              <h3 className={`text-xl font-semibold mb-4 ${
-                darkMode ? 'text-teal-400' : 'text-teal-600'
-              }`}>
-                {category.category}
-              </h3>
-              
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill, skillIndex) => (
-                  <span 
-                    key={skillIndex}
-                    className={`px-3 py-1 rounded-full text-sm ${
-                      darkMode 
-                        ? 'bg-gray-700 text-gray-300' 
-                        : 'bg-gray-200 text-gray-800'
-                    }`}
-                  >
+    <div className="section-container">
+      <h2 className="section-title">Skills & Expertise</h2>
+      <p className="section-subtitle">
+        A comprehensive set of technical and professional skills gained through education and practical experience
+      </p>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {skills.map((category, index) => (
+          <div 
+            key={index}
+            className={`p-6 rounded-lg border ${
+              darkMode 
+                ? 'bg-gray-800/70 border-gray-700 hover:border-primary/30' 
+                : 'bg-white border-gray-200 hover:border-primary/30'
+            } transition-all duration-300 hover:shadow-md hover-lift`}
+          >
+            <h3 className="text-xl font-semibold mb-4 text-primary">
+              {category.category}
+            </h3>
+            
+            <div className="space-y-2">
+              {category.skills.map((skill, skillIndex) => (
+                <div key={skillIndex} className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-primary flex-shrink-0" />
+                  <span className={`${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                     {skill}
                   </span>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    </section>
+    </div>
   );
 };
 

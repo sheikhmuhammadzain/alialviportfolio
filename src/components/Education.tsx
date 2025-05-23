@@ -1,5 +1,5 @@
 import React from 'react';
-import { CalendarDays, MapPin, GraduationCap, BookOpen } from 'lucide-react';
+import { CalendarDays, MapPin, GraduationCap, BookOpen, Award } from 'lucide-react';
 import { education, certifications } from '../data/portfolio-data';
 
 interface EducationProps {
@@ -8,89 +8,90 @@ interface EducationProps {
 
 const Education: React.FC<EducationProps> = ({ darkMode }) => {
   return (
-    <section 
-      id="education" 
-      className={`py-16 ${darkMode ? 'bg-gray-800 text-white' : 'bg-gray-100 text-gray-900'}`}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className={`text-3xl font-bold mb-12 text-center ${
-          darkMode ? 'text-purple-400' : 'text-purple-700'
-        }`}>
-          Education & Certifications
-        </h2>
-        
-        <div className="max-w-4xl mx-auto">
-          {education.map((edu, index) => (
-            <div 
-              key={index}
-              className={`mb-10 p-6 rounded-lg shadow-md ${
-                darkMode ? 'bg-gray-900' : 'bg-white'
-              }`}
-            >
-              <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                <div>
-                  <h3 className={`text-xl font-bold ${
-                    darkMode ? 'text-teal-400' : 'text-teal-600'
+    <div className="section-container">
+      <h2 className="section-title">Education & Certifications</h2>
+      <p className="section-subtitle">
+        Academic background and professional certifications that have shaped my expertise
+      </p>
+      
+      <div className="max-w-4xl mx-auto">
+        {education.map((edu, index) => (
+          <div 
+            key={index}
+            className={`mb-10 p-6 rounded-lg border ${
+              darkMode 
+                ? 'bg-gray-800/70 border-gray-700' 
+                : 'bg-white border-gray-200'
+            } hover:border-primary/30 transition-all duration-300 hover:shadow-md`}
+          >
+            <div className="flex flex-col md:flex-row md:items-start justify-between mb-4">
+              <div>
+                <h3 className="text-xl font-bold text-primary mb-1">
+                  {edu.degree}
+                </h3>
+                <div className="flex items-center">
+                  <GraduationCap size={16} className="text-primary" />
+                  <span className={`ml-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'} font-medium`}>
+                    {edu.institution}
+                  </span>
+                </div>
+              </div>
+              
+              <div className="mt-4 md:mt-0 flex flex-col md:items-end">
+                <div className="flex items-center">
+                  <CalendarDays size={16} className={darkMode ? 'text-gray-400' : 'text-gray-500'} />
+                  <span className={`ml-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    {edu.period}
+                  </span>
+                </div>
+                <div className="flex items-center mt-1">
+                  <MapPin size={16} className={darkMode ? 'text-gray-400' : 'text-gray-500'} />
+                  <span className={`ml-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                    {edu.location}
+                  </span>
+                </div>
+                <div className="flex items-center mt-2">
+                  <Award size={16} className="text-primary" />
+                  <span className={`ml-2 font-medium ${
+                    darkMode ? 'text-gray-200' : 'text-gray-800'
                   }`}>
-                    {edu.degree}
-                  </h3>
-                  <div className="flex items-center mt-1">
-                    <GraduationCap size={16} className={darkMode ? 'text-gray-400' : 'text-gray-500'} />
-                    <span className={`ml-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                      {edu.institution}
-                    </span>
-                  </div>
-                </div>
-                
-                <div className="mt-2 md:mt-0 flex flex-col md:items-end">
-                  <div className="flex items-center">
-                    <CalendarDays size={16} className={darkMode ? 'text-gray-400' : 'text-gray-500'} />
-                    <span className={`ml-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                      {edu.period}
-                    </span>
-                  </div>
-                  <div className="flex items-center mt-1">
-                    <MapPin size={16} className={darkMode ? 'text-gray-400' : 'text-gray-500'} />
-                    <span className={`ml-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                      {edu.location}
-                    </span>
-                  </div>
+                    GPA: {edu.gpa}
+                  </span>
                 </div>
               </div>
-              
-              <div className={`mt-3 ${darkMode ? 'text-purple-300' : 'text-purple-600'}`}>
-                <span className="font-medium">GPA: {edu.gpa}</span>
-              </div>
-              
-              <ul className={`list-disc pl-5 mt-4 space-y-2 ${
-                darkMode ? 'text-gray-300' : 'text-gray-700'
-              }`}>
+            </div>
+            
+            <div className="mt-6">
+              <ul className="space-y-3">
                 {edu.details.map((item, i) => (
-                  <li key={i}>{item}</li>
+                  <li key={i} className="flex items-start">
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary mt-2 mr-2 flex-shrink-0"></span>
+                    <span className={`${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{item}</span>
+                  </li>
                 ))}
               </ul>
             </div>
-          ))}
+          </div>
+        ))}
+        
+        <div className="mt-16">
+          <h3 className="text-xl font-bold text-primary mb-6">
+            Professional Certifications
+          </h3>
           
-          <div className="mt-12">
-            <h3 className={`text-2xl font-bold mb-6 ${
-              darkMode ? 'text-teal-400' : 'text-teal-600'
-            }`}>
-              Certifications
-            </h3>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-              {certifications.map((cert, index) => (
-                <div 
-                  key={index}
-                  className={`p-4 rounded-lg ${
-                    darkMode ? 'bg-gray-900' : 'bg-white'
-                  } shadow-md flex items-center`}
-                >
-                  <div className={`mr-3 p-2 rounded-full ${
-                    darkMode ? 'bg-purple-900 text-purple-300' : 'bg-purple-100 text-purple-700'
-                  }`}>
-                    <BookOpen size={20} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {certifications.map((cert, index) => (
+              <div 
+                key={index}
+                className={`p-4 rounded-lg border ${
+                  darkMode 
+                    ? 'bg-gray-800/70 border-gray-700' 
+                    : 'bg-white border-gray-200'
+                } hover:border-primary/30 transition-all duration-300 hover:shadow-md hover-lift`}
+              >
+                <div className="flex items-center">
+                  <div className="mr-3 p-2 rounded-full bg-primary/10">
+                    <BookOpen size={20} className="text-primary" />
                   </div>
                   <div>
                     <h4 className={`font-medium ${darkMode ? 'text-white' : 'text-gray-900'}`}>
@@ -101,12 +102,12 @@ const Education: React.FC<EducationProps> = ({ darkMode }) => {
                     </p>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

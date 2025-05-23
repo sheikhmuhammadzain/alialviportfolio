@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Code } from 'lucide-react';
+import { ExternalLink, Github, Code } from 'lucide-react';
 import { projects } from '../data/portfolio-data';
 
 interface ProjectsProps {
@@ -8,89 +8,86 @@ interface ProjectsProps {
 
 const Projects: React.FC<ProjectsProps> = ({ darkMode }) => {
   return (
-    <section 
-      id="projects" 
-      className={`py-16 ${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className={`text-3xl font-bold mb-12 text-center ${
-          darkMode ? 'text-purple-400' : 'text-purple-700'
-        }`}>
-          Projects
-        </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <div 
-              key={index}
-              className={`rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105 ${
-                darkMode ? 'bg-gray-800' : 'bg-gray-50'
-              }`}
-            >
-              <div className="h-48 overflow-hidden">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                />
+    <div className="section-container">
+      <h2 className="section-title">Projects</h2>
+      <p className="section-subtitle">
+        A showcase of my technical skills and problem-solving abilities
+      </p>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {projects.map((project, index) => (
+          <div 
+            key={index}
+            className={`rounded-lg border overflow-hidden ${
+              darkMode 
+                ? 'bg-gray-800/70 border-gray-700' 
+                : 'bg-white border-gray-200'
+            } hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover-lift`}
+          >
+            <div className="h-48 overflow-hidden">
+              <img 
+                src={project.image} 
+                alt={project.title} 
+                className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+              />
+            </div>
+            
+            <div className="p-5">
+              <h3 className="text-lg font-bold mb-2 text-primary">
+                {project.title}
+              </h3>
+              
+              <p className={`mb-4 line-clamp-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                {project.description}
+              </p>
+              
+              <div className="flex flex-wrap gap-2 mb-5">
+                {project.technologies.map((tech, techIndex) => (
+                  <span 
+                    key={techIndex}
+                    className={`px-2 py-1 text-xs rounded-md ${
+                      darkMode 
+                        ? 'bg-gray-700 text-gray-300' 
+                        : 'bg-gray-100 text-gray-800'
+                    }`}
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
               
-              <div className="p-6">
-                <h3 className={`text-xl font-bold mb-2 ${
-                  darkMode ? 'text-teal-400' : 'text-teal-600'
-                }`}>
-                  {project.title}
-                </h3>
+              <div className="flex justify-between items-center pt-4 border-t border-gray-700/20">
+                <a 
+                  href="#" 
+                  className={`flex items-center gap-1 text-sm font-medium ${
+                    darkMode 
+                      ? 'text-primary hover:text-primary-foreground' 
+                      : 'text-primary hover:text-primary/80'
+                  }`}
+                >
+                  <ExternalLink size={15} />
+                  <span>Live Demo</span>
+                </a>
                 
-                <p className={`mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                  {project.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, techIndex) => (
-                    <span 
-                      key={techIndex}
-                      className={`px-2 py-1 rounded-full text-xs ${
-                        darkMode 
-                          ? 'bg-gray-700 text-gray-300' 
-                          : 'bg-gray-200 text-gray-800'
-                      }`}
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                
-                <div className="flex gap-3">
-                  <a 
-                    href="#" 
-                    className={`p-2 rounded ${
-                      darkMode 
-                        ? 'bg-gray-700 text-teal-400 hover:bg-gray-600' 
-                        : 'bg-gray-200 text-teal-700 hover:bg-gray-300'
-                    } transition-colors duration-300`}
-                    aria-label="View Demo"
-                  >
-                    <ExternalLink size={18} />
-                  </a>
-                  <a 
-                    href="#" 
-                    className={`p-2 rounded ${
-                      darkMode 
-                        ? 'bg-gray-700 text-purple-400 hover:bg-gray-600' 
-                        : 'bg-gray-200 text-purple-700 hover:bg-gray-300'
-                    } transition-colors duration-300`}
-                    aria-label="View Code"
-                  >
-                    <Code size={18} />
-                  </a>
-                </div>
+                <a 
+                  href="https://github.com/aliawan" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex items-center gap-1 text-sm font-medium ${
+                    darkMode 
+                      ? 'text-primary hover:text-primary-foreground' 
+                      : 'text-primary hover:text-primary/80'
+                  }`}
+                >
+                  <Github size={15} />
+                  <span>Source Code</span>
+                </a>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    </section>
+    </div>
   );
 };
 
