@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%; /* White */
+    --foreground: 0 0% 20%; /* Dark Gray */
+    --card: 0 0% 98%; /* Off-white */
+    --card-foreground: 0 0% 20%; /* Dark Gray */
+    --popover: 0 0% 100%; /* White */
+    --popover-foreground: 0 0% 20%; /* Dark Gray */
+    --primary: 220 30% 50%; /* Muted Blue */
+    --primary-foreground: 0 0% 100%; /* White */
+    --secondary: 0 0% 96%; /* Light Gray */
+    --secondary-foreground: 0 0% 20%; /* Dark Gray */
+    --muted: 0 0% 94%; /* Lighter Gray */
+    --muted-foreground: 0 0% 40%; /* Medium Gray */
+    --accent: 220 30% 50%; /* Muted Blue (same as primary) */
+    --accent-foreground: 0 0% 100%; /* White */
+    --destructive: 0 70% 50%; /* Muted Red */
+    --destructive-foreground: 0 0% 100%; /* White */
+    --border: 0 0% 90%; /* Very Light Gray */
+    --input: 0 0% 90%; /* Very Light Gray */
+    --ring: 220 30% 50%; /* Muted Blue */
+    --radius: 0.3rem; /* Slightly reduced border radius */
+  }
+
+  .dark {
+    --background: 240 10% 10%; /* Very Dark Gray */
+    --foreground: 0 0% 85%; /* Light Gray */
+    --card: 240 10% 12%; /* Slightly Lighter Dark Gray */
+    --card-foreground: 0 0% 85%; /* Light Gray */
+    --popover: 240 10% 10%; /* Very Dark Gray */
+    --popover-foreground: 0 0% 85%; /* Light Gray */
+    --primary: 220 30% 70%; /* Lighter Muted Blue */
+    --primary-foreground: 0 0% 10%; /* Very Dark Gray (for contrast on light blue) */
+    --secondary: 240 10% 18%; /* Darker Gray */
+    --secondary-foreground: 0 0% 85%; /* Light Gray */
+    --muted: 240 10% 18%; /* Darker Gray */
+    --muted-foreground: 0 0% 60%; /* Medium Light Gray */
+    --accent: 220 30% 70%; /* Lighter Muted Blue (same as primary) */
+    --accent-foreground: 0 0% 10%; /* Very Dark Gray */
+    --destructive: 0 60% 40%; /* Muted Dark Red */
+    --destructive-foreground: 0 0% 98%; /* Off-white */
+    --border: 240 10% 15%; /* Dark Gray */
+    --input: 240 10% 15%; /* Dark Gray */
+    --ring: 220 30% 70%; /* Lighter Muted Blue */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', sans-serif;
+  }
+
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+  }
+
+  .section-title {
+    @apply text-2xl md:text-3xl font-bold mb-2 text-center;
+  }
+  
+  .section-subtitle {
+    @apply text-base text-muted-foreground mb-12 text-center max-w-2xl mx-auto;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4 shadow-sm;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none bg-secondary text-secondary-foreground hover:bg-secondary/80 h-10 py-2 px-4;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 py-2 px-4;
+  }
+
+  .card {
+    @apply rounded-lg border bg-card text-card-foreground hover:border-primary/20 transition-colors;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+  
+  .input {
+    @apply flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-padding-top: 5rem;
+  scroll-behavior: smooth;
+}
+
+/* Layout improvements */
+.grid-layout {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+/* Typography improvements */
+.prose-custom h1, .prose-custom h2, .prose-custom h3, .prose-custom h4 {
+  @apply text-foreground mb-4;
+}
+
+.prose-custom p {
+  @apply text-muted-foreground mb-4;
+}
+
+/* Additional utilities */
+.hover-lift {
+  @apply transition-transform duration-300 hover:-translate-y-1;
+}
