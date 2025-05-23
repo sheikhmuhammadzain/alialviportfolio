@@ -112,7 +112,7 @@ const Hero: React.FC<HeroProps> = ({ darkMode }) => {
               <img 
                 src={dp} 
                 alt="Muhammad Ali" 
-                className="w-full h-full object-cover rounded-full scale-[1.3] -translate-y-10"
+                className="w-full h-full object-cover rounded-full scale-[1.3] -translate-y-5"
               />
             </div>
           </div>
